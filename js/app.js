@@ -2,8 +2,8 @@ const Application = PIXI.Application;
 const Graphic = PIXI.Graphics;
 const Text = PIXI.Text;
 
-const width = 600,
-  height = 400;
+const width = window.innerWidth,
+  height = window.innerHeight;
 
 const app = new Application({
   width,
@@ -103,16 +103,29 @@ bottle.scale.x = 0.2;
 bottle.scale.y = 0.2;
 
 let speed = 3;
-let bottleCount = 5;
+let bottleCount = 2;
 
 function loop(delta) {
-  if (bottle.x > 10) {
+  if (bottle.x > belfordRight.width - 10) {
     bottle.x = bottle.x - 1;
   } else if (bottleCount > 1) {
     bottle.x = width;
-    bottleCount--;
-    bottle.y = Math.min(Math.round(Math.random() * height), height - 10);
     app.stage.removeChild(belfordSmile);
+
+    const halfHeight = Math.round(belfordRight.y / 2);
+
+    console.log("low", belfordRight.y + halfHeight, bottle.y);
+    console.log("high", belfordRight.y - halfHeight, bottle.y);
+    console.log("middle", belfordRight.y, bottle.y);
+
+    if (
+      belfordRight.y + halfHeight > bottle.y &&
+      belfordRight.y - halfHeight < bottle.y
+    ) {
+      bottleCount--;
+    }
+
+    bottle.y = Math.min(Math.round(Math.random() * height), height - 10);
     text.text = "Belford needs " + bottleCount + " milk";
   } else {
     speed++;
@@ -121,7 +134,11 @@ function loop(delta) {
     bottle.y = Math.min(Math.round(Math.random() * height), height - 10);
     app.stage.addChild(belfordSmile);
     app.stage.removeChild(text);
+    app.stage.removeChild(bottle);
     app.stage.addChild(text);
+    app.stage.addChild(bottle);
+    app.stage.removeChild(belfordRight);
+    app.stage.addChild(belfordRight);
     text.text = "Good Job!";
     setTimeout(function () {
       app.ticker.start();
@@ -131,11 +148,16 @@ function loop(delta) {
 
 belfordSmile.scale.x = 0.6;
 belfordSmile.scale.y = 0.6;
-belfordSmile.x = 10;
+belfordSmile.x = width / 2;
+belfordSmile.y = height / 2;
+belfordSmile.anchor.x = 0.5;
+belfordSmile.anchor.y = 0.5;
 
 const text = new Text("Belford needs " + bottleCount + " milk", style);
-text.x = 100;
-text.y = 100;
+text.x = width / 2;
+text.y = height / 2;
+text.anchor.x = 0.5;
+text.anchor.y = 0.5;
 
 text.style.wordWrap = true;
 text.style.wordWrapWidth = 150;
