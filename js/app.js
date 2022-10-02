@@ -131,10 +131,10 @@ function loop(delta) {
 
 belfordSmile.scale.x = 0.6;
 belfordSmile.scale.y = 0.6;
-belfordSmile.x = 100;
+belfordSmile.x = 10;
 
 const text = new Text("Belford needs " + bottleCount + " milk", style);
-text.x = 200;
+text.x = 100;
 text.y = 100;
 
 text.style.wordWrap = true;
