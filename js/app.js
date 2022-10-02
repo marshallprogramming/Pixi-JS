@@ -104,11 +104,13 @@ bottle.scale.y = 0.2;
 
 let speed = 3;
 let bottleCount = 2;
+let misses = 0;
+let level = 1;
 
 function loop(delta) {
   if (bottle.x > belfordRight.width - 10) {
     bottle.x = bottle.x - 1;
-  } else if (bottleCount > 1) {
+  } else if (bottleCount > 1 && misses < 2) {
     bottle.x = width;
     app.stage.removeChild(belfordSmile);
 
@@ -123,10 +125,18 @@ function loop(delta) {
       belfordRight.y - halfHeight < bottle.y
     ) {
       bottleCount--;
+    } else {
+      misses++;
+      missText.text = "Missed (" + misses + "/3)";
     }
 
     bottle.y = Math.min(Math.round(Math.random() * height), height - 10);
     text.text = "Belford needs " + bottleCount + " milk";
+  } else if (misses === 2) {
+    missText.text = "Missed (3/3)";
+    app.ticker.stop();
+    text.text = "Failed.";
+    app.stage.removeChild(bottle);
   } else {
     speed++;
     bottleCount = 5 + speed;
@@ -136,11 +146,14 @@ function loop(delta) {
     app.stage.removeChild(text);
     app.stage.removeChild(bottle);
     app.stage.addChild(text);
-    app.stage.addChild(bottle);
-    app.stage.removeChild(belfordRight);
-    app.stage.addChild(belfordRight);
     text.text = "Good Job!";
+    misses = 0;
     setTimeout(function () {
+      level++;
+      app.stage.addChild(bottle);
+      app.stage.removeChild(belfordRight);
+      app.stage.addChild(belfordRight);
+      levelText.text = "Level " + level;
       app.ticker.start();
     }, 1500);
   }
@@ -153,11 +166,24 @@ belfordSmile.y = height / 2;
 belfordSmile.anchor.x = 0.5;
 belfordSmile.anchor.y = 0.5;
 
-const text = new Text("Loading...");
+const text = new Text("Loading...", style);
 text.x = width / 2;
 text.y = height / 2;
 text.anchor.x = 0.5;
 text.anchor.y = 0.5;
+
+const missText = new Text(
+  "Missed (" + misses + "/3)",
+  new PIXI.TextStyle({
+    fontSize: 20,
+  })
+);
+missText.x = width - 150;
+missText.y = 20;
+
+const levelText = new Text("Level " + level);
+levelText.x = width / 2 - 42;
+levelText.y = 20;
 
 text.style.wordWrap = true;
 text.style.wordWrapWidth = 150;
@@ -167,6 +193,8 @@ app.stage.addChild(text);
 
 setTimeout(function () {
   (text.text = "Belford needs " + bottleCount + " milk"), style;
+  app.stage.addChild(missText);
+  app.stage.addChild(levelText);
   app.stage.addChild(bottle);
   app.stage.addChild(belfordRight);
-}, 4000);
+}, 1000);
