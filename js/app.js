@@ -67,9 +67,18 @@ app.stage.addChild(line);
 
 // ------------ Actual Game ----------- //
 
-const belfordRight = PIXI.Sprite.from("../images/Belford Right.jpg");
-const belfordSmile = PIXI.Sprite.from("../images/Belford Smile.jpg");
-const bottle = PIXI.Sprite.from("../images/bottle.jpg");
+// const belfordRight = PIXI.Sprite.from("../images/Belford Right.jpg");
+const belfordRight = PIXI.Sprite.from(
+  "https://raw.githubusercontent.com/marshallprogramming/Pixi-JS/main/images/Belford%20Right.jpg"
+);
+// const belfordSmile = PIXI.Sprite.from("../images/Belford Smile.jpg");
+const belfordSmile = PIXI.Sprite.from(
+  "https://raw.githubusercontent.com/marshallprogramming/Pixi-JS/main/images/Belford%20Smile.jpg"
+);
+// const bottle = PIXI.Sprite.from("../images/bottle.jpg");
+const bottle = PIXI.Sprite.from(
+  "https://raw.githubusercontent.com/marshallprogramming/Pixi-JS/main/images/bottle.jpg"
+);
 
 belfordRight.scale.x = 0.1;
 belfordRight.scale.y = 0.1;
