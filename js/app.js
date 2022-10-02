@@ -36,14 +36,14 @@ circle.beginFill(0x22aacc).drawCircle(440, 200, 80).endFill();
 const line = new Graphic();
 line.lineStyle(5, 0xffea00, 1).moveTo(150, 10).lineTo(150, 80);
 
-const torus = new Graphic();
-torus
-  .beginFill(0x22aacc)
-  .drawTorus(10, 70, 80, 100, 0, Math.PI / 2)
-  .endFill();
+// const torus = new Graphic();
+// torus
+//   .beginFill(0x22aacc)
+//   .drawTorus(10, 70, 80, 100, 0, Math.PI / 2)
+//   .endFill();
 
-const star = new Graphic();
-star.beginFill(0xadadad).drawStar(400, 70, 30, 80).endFill();
+// const star = new Graphic();
+// star.beginFill(0xadadad).drawStar(400, 70, 30, 80).endFill();
 
 const style = new PIXI.TextStyle({
   fontFamily: "Montserrat",
@@ -62,8 +62,8 @@ app.stage.addChild(rectangle);
 app.stage.addChild(poly);
 app.stage.addChild(circle);
 app.stage.addChild(line);
-app.stage.addChild(torus);
-app.stage.addChild(star);
+// app.stage.addChild(torus);
+// app.stage.addChild(star);
 
 // ------------ Actual Game ----------- //
 
@@ -116,7 +116,7 @@ function loop(delta) {
     text.text = "Good Job!";
     setTimeout(function () {
       app.ticker.start();
-    }, 2000);
+    }, 1500);
   }
 }
 
