@@ -153,7 +153,7 @@ belfordSmile.y = height / 2;
 belfordSmile.anchor.x = 0.5;
 belfordSmile.anchor.y = 0.5;
 
-const text = new Text("Belford needs " + bottleCount + " milk", style);
+const text = new Text("Loading...");
 text.x = width / 2;
 text.y = height / 2;
 text.anchor.x = 0.5;
@@ -165,5 +165,8 @@ text.style.align = "center";
 
 app.stage.addChild(text);
 
-app.stage.addChild(bottle);
-app.stage.addChild(belfordRight);
+setTimeout(function () {
+  (text.text = "Belford needs " + bottleCount + " milk"), style;
+  app.stage.addChild(bottle);
+  app.stage.addChild(belfordRight);
+}, 4000);
