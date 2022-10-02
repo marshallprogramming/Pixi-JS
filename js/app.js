@@ -197,4 +197,4 @@ setTimeout(function () {
   app.stage.addChild(levelText);
   app.stage.addChild(bottle);
   app.stage.addChild(belfordRight);
-}, 1000);
+}, 5000);
