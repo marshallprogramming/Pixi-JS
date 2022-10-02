@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@pixi/graphics-extras": "^6.5.5",
+    "pixi.js": "^6.5.5"
+  },
+  "name": "pixi-js",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marshallprogramming/Pixi-JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marshallprogramming/Pixi-JS/issues"
+  },
+  "homepage": "https://github.com/marshallprogramming/Pixi-JS#readme"
+}
