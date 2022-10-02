@@ -103,7 +103,7 @@ bottle.scale.x = 0.2;
 bottle.scale.y = 0.2;
 
 let speed = 3;
-let bottleCount = 2;
+let bottleCount = 5;
 let misses = 0;
 let level = 1;
 
@@ -139,7 +139,7 @@ function loop(delta) {
     app.stage.removeChild(bottle);
   } else {
     speed++;
-    bottleCount = 5 + speed;
+    bottleCount = 5 + level;
     app.ticker.stop();
     bottle.y = Math.min(Math.round(Math.random() * height), height - 10);
     app.stage.addChild(belfordSmile);
@@ -195,6 +195,9 @@ setTimeout(function () {
   (text.text = "Belford needs " + bottleCount + " milk"), style;
   app.stage.addChild(missText);
   app.stage.addChild(levelText);
-  app.stage.addChild(bottle);
-  app.stage.addChild(belfordRight);
+
+  setTimeout(function () {
+    app.stage.addChild(bottle);
+    app.stage.addChild(belfordRight);
+  }, 1000);
 }, 4500);
