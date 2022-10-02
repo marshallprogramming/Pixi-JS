@@ -104,7 +104,7 @@ bottle.scale.y = 0.2;
 
 let speed = 3;
 let bottleCount = 5;
-let misses = 0;
+let misses = -1;
 let level = 1;
 
 function loop(delta) {
@@ -138,8 +138,7 @@ function loop(delta) {
     text.text = "Failed.";
     app.stage.removeChild(bottle);
   } else {
-    speed++;
-    bottleCount = 5 + level;
+    speed += 3;
     app.ticker.stop();
     bottle.y = Math.min(Math.round(Math.random() * height), height - 10);
     app.stage.addChild(belfordSmile);
@@ -150,6 +149,7 @@ function loop(delta) {
     misses = 0;
     setTimeout(function () {
       level++;
+      bottleCount = 5 + level;
       app.stage.addChild(bottle);
       app.stage.removeChild(belfordRight);
       app.stage.addChild(belfordRight);
